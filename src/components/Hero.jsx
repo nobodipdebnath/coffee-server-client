@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Heder = () => {
+const Hero = () => {
     return (
         <div>
-            Header
+            
         </div>
     );
 };
 
-export default Heder;
+export default Hero;
