@@ -2,6 +2,7 @@ import React from 'react';
 import coffeeBg from '../assets/images/more/coffeeBg.png'
 import { IoMdArrowBack } from "react-icons/io";
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const AddCoffee = () => {
     const handleAddCoffee = (e) => {
@@ -32,10 +33,11 @@ const AddCoffee = () => {
             }
         })
     }
+    const navigate = useNavigate();
     return (
-        <div>
+        <div className='pt-26'>
             <div className='px-[15%] py-[50px]' style={{background: `url(${coffeeBg})`}}>
-                <button className='flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer'>
+                <button onClick={() => navigate(-1)}  className='flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer'>
                     <IoMdArrowBack className='text-xl'></IoMdArrowBack>
                     <p className='text-xl rancho text-[#374151] my-text '>Back To Home</p>
                 </button>

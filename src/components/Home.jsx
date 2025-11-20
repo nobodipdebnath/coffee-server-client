@@ -1,27 +1,39 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { useState } from 'react';
+import { useLoaderData, useNavigate } from 'react-router';
 import cardBg from '../assets/images/more/cards.png'
 import { CiCoffeeCup } from "react-icons/ci";
 import CoffeeCard from './CoffeeCard';
 import InstagramImage from './InstagramImage';
+import Hero from './Hero';
 
 const Home = () => {
-    const coffees = useLoaderData();
-    console.log(coffees);
+    const initialCoffees = useLoaderData();
+    const [coffees, setCoffees] = useState(initialCoffees);
+
+    // console.log(coffees);
+    const navigate = useNavigate();
     return (
         <>
+        <div>
+            <Hero></Hero>
+        </div>
         <div className='py-[120px] px-[15%]' style={{background: `url(${cardBg}) `, backgroundPosition: 'center', backgroundSize: 'cover'}}>
             <p className='text-xl text-center text-[#1B1A1A]'>--- Sip & Savor ---</p>
             <h1 className='text-center text-[56px] mt-2 rancho my-text text-[#331A15]'>Our Popular Products</h1>
             <div className='flex justify-center items-center'>
-                <button className='flex items-center py-3 px-5 border-2 border-[#331A15] rounded-lg cursor-pointer bg-[#E3B577] '>
+                <button onClick={() => navigate('/addCoffee')} className='flex items-center py-3 px-5 border-2 border-[#331A15] rounded-lg cursor-pointer bg-[#E3B577] '>
                     <p className='text-xl rancho my-text'>Add Coffee</p>
                     <CiCoffeeCup className='text-2xl'></CiCoffeeCup>
                 </button>
             </div>
-            <div className='grid grid-cols-2 gap-6 mt-12'>
+            <div className='grid lg:grid-cols-2 gap-6 mt-12'>
                 {
-                    coffees.map((coffee, idx) => <CoffeeCard coffee={coffee} key={idx}></CoffeeCard>)
+                    coffees.map((coffee, idx) => <CoffeeCard 
+                    coffee={coffee}
+                    key={idx}
+                    coffees = {coffees}
+                    setCoffees = {setCoffees}
+                    ></CoffeeCard>)
                 }
             </div>
         </div>

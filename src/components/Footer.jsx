@@ -13,7 +13,7 @@ import { FaLocationDot } from "react-icons/fa6";
 const Footer = () => {
     return (
         <footer className='pt-[121px]' style={{ backgroundImage: `url(${footerBg})` }}>
-            <div className='pb-12 px-[15%]  grid grid-cols-5 justify-between items-center'>
+            <div className='pb-12 px-[15%]  grid lg:grid-cols-5 justify-between items-center'>
                 <div className='col-span-3'>
                     <img className='h-18' src={logo} alt="" />
                     <h1 className='mt-2 text-[56px] text-[#331A15] my-text rancho'>Espresso Emporium</h1>
@@ -47,7 +47,7 @@ const Footer = () => {
                         <input className='py-3 px-5 bg-white outline-none rounded-lg' type="email" name="email" placeholder='Email'  />
                         <textarea className='py-3 px-5 bg-white outline-none rounded-lg' placeholder='Message' rows={5} cols={5} ></textarea>
                         <div>
-                            <button className='text-[#331A15] mt-2 border border-[#331A15] rancho px-10 py-3 rounded-[30px] cursor-pointer text-xl hover:text-white duration-500 hover:bg-[#331A15] ' type='submit'>Send Message</button>
+                            <button className='text-[#331A15] mt-2 border border-[#331A15] rancho px-10 py-3 rounded-[30px] cursor-pointer text-xl hover:text-white my-text duration-500 hover:bg-[#331A15] ' type='submit'>Send Message</button>
                         </div>
                     </form>
                 </div>

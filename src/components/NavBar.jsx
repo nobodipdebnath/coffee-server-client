@@ -10,7 +10,7 @@ const NavBar = () => {
                 style={{ backgroundImage: `url(${navbg})` }}
             >
                 <img className="h-14" src={logo} alt="Not Found" />
-                <h1 className="rancho text-[60px] text-white">Espresso Emporium</h1>
+                <h1 className="rancho my-text text-[60px] text-white">Espresso Emporium</h1>
             </div>
         </nav>
     );

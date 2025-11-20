@@ -5,8 +5,10 @@ import NavBar from '../components/NavBar';
 
 const Root = () => {
     return (
-        <div>
-            <NavBar></NavBar>
+        <div className='relative'>
+            <div className='absolute top-0 left-0 right-0' >
+                <NavBar></NavBar>
+            </div>
             <Outlet></Outlet>
             <Footer></Footer>
         </div>
