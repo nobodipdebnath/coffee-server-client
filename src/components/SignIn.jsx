@@ -1,16 +1,47 @@
-import React from 'react';
+import React, { use } from 'react';
 import coffeeBg from '../assets/images/more/coffeeBg.png'
 import { useNavigate } from 'react-router';
 import { IoMdArrowBack } from 'react-icons/io';
+import { AuthContext } from '../Context/AuthContext';
 
 const SignIn = () => {
     const navigate = useNavigate();
-    const handleSignIn = () =>{
+    const {signInUser} = use(AuthContext);
+
+    const handleSignIn = (e) =>{
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        signInUser(email, password)
+        .then(result => {
+            console.log(result.user)
+            const signInInfo = {
+                email, 
+                lastSignInTime : result.user?.metadata?.lastSignInTime
+            }
+
+            fetch('http://localhost:3000/users', {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(signInInfo)
+            })
+            .then(res => res.json())
+            .then(result => {
+                console.log('after update patch',result)
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
         console.log("Sign is ")
     }
     return (
         <div className='pt-18'>
-            <div className='px-[15%] py-[50px]' style={{background: `url(${coffeeBg})`}}>
+            <div className='px-[1o%] py-[50px]' style={{background: `url(${coffeeBg})`}}>
                 <button onClick={() => navigate(-1)}  className='flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer'>
                     <IoMdArrowBack className='text-xl'></IoMdArrowBack>
                     <p className='text-xl rancho text-[#374151] my-text '>Back To Home</p>
