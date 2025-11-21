@@ -1,13 +1,13 @@
 import React, { use } from 'react';
 import coffeeBg from '../assets/images/more/coffeeBg.png'
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { IoMdArrowBack } from 'react-icons/io';
 import { AuthContext } from '../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const {createUser} = use(AuthContext);
+    const {createUser, setUser} = use(AuthContext);
 
     const handelSignUp = (e) =>{
         e.preventDefault();
@@ -31,7 +31,7 @@ const SignUp = () => {
             }
 
             // save profile info in db
-            fetch('http://localhost:3000/users', {
+            fetch('https://coffee-store-server-one-psi.vercel.app/users', {
                 method: 'POST', 
                 headers: {
                     "content-type": "application/json"
@@ -40,6 +40,7 @@ const SignUp = () => {
             })
             .then(res => res.json())
             .then(data => {
+                setUser(data.user)
                 if(data.insertedId){
                     Swal.fire({
                         position: "center",
@@ -47,7 +48,8 @@ const SignUp = () => {
                         title: "Your Account is Created ☕",
                         showConfirmButton: false,
                         timer: 1500
-                        });
+                    });
+                    navigate('/')
                 }
             })
 
@@ -93,6 +95,10 @@ const SignUp = () => {
                             <input className='py-3 px-3 bg-white rounded-lg w-full outline-none' type="text" name="photo" required placeholder='Enter Photo URL' />
                         </div>
                         <button type='submit' className='text-xl text-[#331A15] my-text border-2 border-[#331A15] rancho w-full py-3 rounded-lg bg-[#D2B48C] cursor-pointer'>Sign Up</button>
+
+                        <h3 className='text-center font-medium'>You have all ready account? <Link to='/signin'>
+                            <span  className='rancho my-text cursor-pointer hover:underline'>Sign In</span>
+                        </Link></h3>
                     </form>
                 </div>
             </div>

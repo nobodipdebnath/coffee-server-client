@@ -20,7 +20,7 @@ const Users = () => {
             confirmButtonText: "Yes, delete it!"
             }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/users/${id}`, {
+                fetch(`https://coffee-store-server-one-psi.vercel.app/users/${id}`, {
                     method: 'DELETE'
                 })
                 .then(res => res.json())
@@ -37,6 +37,15 @@ const Users = () => {
                 })
 
             }
+        });
+    }
+    const handelUpdate = () =>  {
+        Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "This Service Not Available Right Now !",
+        showConfirmButton: false,
+        timer: 1500
         });
     }
 
@@ -89,7 +98,7 @@ const Users = () => {
                         <td>{user.number}</td>
                         <th className='flex items-center gap-5'>
                             <button className="p-2.5 cursor-pointer bg-[#D2B48C] rounded-lg text-lg text-white"><FaEye></FaEye></button>
-                            <button className="p-2.5 cursor-pointer bg-[#3C393B] rounded-lg text-lg text-white"><MdModeEdit></MdModeEdit></button>
+                            <button onClick={handelUpdate} className="p-2.5 cursor-pointer bg-[#3C393B] rounded-lg text-lg text-white"><MdModeEdit></MdModeEdit></button>
                             <button onClick={() => handelDelete(user._id)} className="p-2.5 cursor-pointer bg-[#EA4744] rounded-lg text-lg text-white"><MdDelete></MdDelete></button>
                         </th>
                     </tr> )

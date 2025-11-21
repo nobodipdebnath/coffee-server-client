@@ -13,7 +13,7 @@ const AddCoffee = () => {
         console.log(newCoffee);
 
         // sent coffee data in backend
-        fetch('http://localhost:3000/coffees', {
+        fetch('https://coffee-store-server-one-psi.vercel.app/coffees', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

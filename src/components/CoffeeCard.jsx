@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { use } from 'react';
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import Swal from 'sweetalert2';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
 
 const CoffeeCard = ({coffee, coffees, setCoffees}) => {
     const{name, price, photo, quantity, supplier, _id} = coffee;
+    const {user} = use(AuthContext);
+    const navigate = useNavigate();
     // console.log(coffee);
 
     const handelDelete = (_id) =>{
         console.log('item Delete', _id);
+        if(!user){
+            return navigate('/signin')
+        }
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -23,7 +29,7 @@ const CoffeeCard = ({coffee, coffees, setCoffees}) => {
             console.log(result.isConfirmed);
             if (result.isConfirmed) {
                 // start deleting the coffee
-                fetch(`http://localhost:3000/coffees/${_id}`, {
+                fetch(`https://coffee-store-server-one-psi.vercel.app/coffees/${_id}`, {
                     method:"Delete"
                 })
                 .then(res => res.json())
