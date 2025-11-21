@@ -9,6 +9,9 @@ import AddCoffee from './components/AddCoffee';
 import UpdateCoffee from './components/UpdateCoffee';
 import CoffeeDetails from './components/CoffeeDetails';
 import ErrorPage from './components/ErrorPage';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import AuthProvider from './Context/AuthProvider';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: '*',
         Component: ErrorPage
+      },
+      {
+        path: 'signin',
+        Component: SignIn
+      },
+      {
+        path: 'signup',
+        Component: SignUp
       }
     ]
   },
@@ -44,6 +55,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </StrictMode>,
 )

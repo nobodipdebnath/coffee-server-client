@@ -35,7 +35,7 @@ const AddCoffee = () => {
     }
     const navigate = useNavigate();
     return (
-        <div className='pt-26'>
+        <div className='pt-18'>
             <div className='px-[15%] py-[50px]' style={{background: `url(${coffeeBg})`}}>
                 <button onClick={() => navigate(-1)}  className='flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer'>
                     <IoMdArrowBack className='text-xl'></IoMdArrowBack>
