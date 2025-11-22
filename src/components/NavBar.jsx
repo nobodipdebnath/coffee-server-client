@@ -54,7 +54,10 @@ const NavBar = () => {
             {
                 user ? 
                     <Link >
-                        <button onClick={handelSignOut} className='py-3 px-10 cursor-pointer bg-white rancho my-text rounded-full'>Log Out</button>
+                        <div className='flex items-center gap-3'>
+                            {/* <img className='bg-white h-10 w-10 object-cover rounded-full' src={user.photoURL} alt="not found" /> */}
+                            <button onClick={handelSignOut} className='py-3 px-10 cursor-pointer bg-white rancho my-text rounded-full'>Log Out</button>
+                        </div>
                     </Link>
                     :
                 <div>

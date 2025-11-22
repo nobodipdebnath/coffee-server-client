@@ -9,11 +9,13 @@ import SignUp from '../components/SignUp';
 import Users from '../components/Users';
 import Root from "../Layout/Root";
 import PrivetRoute from "./PrivetRoute";
+import Loading from "../components/Loading";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component : Root,
+    hydrateFallbackElement: <Loading></Loading>,
     children: [
       {
         index: true,
